@@ -1,28 +1,41 @@
 library(tidyverse)
+library(janitor)
 df <- read_csv("data/crime.csv")
+df <- read_csv("data/JC-202006-citibike-tripdata.csv")
 
-colnames(df)
+# clean up column names
+df <- clean_names(df)
+
+tail(df$birth_year)
+colnames(df) 
+
+# create an age column
+df$age <- 2020 - df$birth_year
+
+# summary stats
+summary(df)
+
+# sort date
+df %>%
+  arrange(desc(starttime)) %>%
+  head(5)
 
 #get summary table by content type
 test<- df %>%
-group_by(year, crm_cd_desc) %>%
+group_by(start_station_name) %>%
   summarise(
-    total_crimes = n(),
-    avg_age=as.integer(mean(vict_age)),
-    num_f = 
-    #avg_year_built =as.integer(mean(year_built)),
-    #avg_living_area =as.integer(mean(gr_liv_area)),
-    #avg_price =as.integer(mean(saleprice)),
-    #total_sales = n()
-  ) %>%  
-  filter(year == 2019) %>%
-  arrange(-total_crimes) %>%
+    total = n(),
+    avg_duration=as.integer(mean(tripduration)),
+    avg_age = as.integer(mean(age)), 
+    total_subscribers = sum(usertype == "Subscriber"),
+    total_customers = sum(usertype == "Customer"),
+  ) %>% 
+  arrange(-total) %>%
   head(5)
 
+# check unique values for usertype
+unique(df$usertype)
 
-df %>%
-  group_by(vict_sex) %>%
-  summarise(
-    n(vict_sex == 'F')
-  ) %>%
-  head()
+# plot
+ggplot(test, aes(fill=start_station_name, y=avg_duration, x=start_station_name)) + 
+  geom_bar(position="dodge", stat="identity") 
