@@ -1,6 +1,7 @@
 library(tidyverse)
 library(janitor)
-df <- read_csv("data/crime.csv")
+library(RColorBrewer)
+
 df <- read_csv("data/JC-202006-citibike-tripdata.csv")
 
 # clean up column names
@@ -30,12 +31,17 @@ group_by(start_station_name) %>%
     total_subscribers = sum(usertype == "Subscriber"),
     total_customers = sum(usertype == "Customer"),
   ) %>% 
-  arrange(-total) %>%
-  head(5)
+  arrange(-total)
 
 # check unique values for usertype
 unique(df$usertype)
 
-# plot
-ggplot(test, aes(fill=start_station_name, y=avg_duration, x=start_station_name)) + 
-  geom_bar(position="dodge", stat="identity") 
+# plot histogram
+ggplot(head(test, 10), aes(y=avg_duration, x=start_station_name , fill = ifelse(avg_duration > 3000, "Over an hour", "Less than an hour"))) + 
+  geom_bar(stat="identity", show.legend = F) + scale_fill_manual(values = c('#828282', '#5eff8a'))
+  #coord_flip()
+  #scale_colour_manual(name = 'y > 3000', values = setNames(c('red','green'),c(T, F)))
+  #scale_fill_brewer(palette="Blues")
+
+# plot distribution
+ggplot(df, aes(x = age)) + geom_density()
