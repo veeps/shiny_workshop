@@ -4,7 +4,7 @@ library(tidyverse)
 library(DT)
 #library(magrittr)
 #library(wesanderson)
-#library(plotly)
+library(plotly)
 
 head(df)
 
@@ -27,6 +27,10 @@ ui <- fluidPage(
         
         fluidRow (
           plotOutput("bar_plot")
+        ),
+        
+        fluidRow (
+          plotly::plotlyOutput("scatter")
         )
 )
 
@@ -71,6 +75,12 @@ server <- function(input, output) {
     ggtitle("Average Trip Duration by Start Station", ) + theme(plot.title = element_text(hjust = 0.5)) + 
     ylab("Trip Duration (Seconds)") +
     xlab("Start Station")
+  })
+  
+  # render scatter plot
+  output$scatter <- renderPlotly({
+    plot_ly(data = df, x = ~age, y = ~tripduration,
+            text = ~paste("Age:", age, "Trip Duration:", tripduration/60, "min"))
   })
   
   
