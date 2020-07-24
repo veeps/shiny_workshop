@@ -17,6 +17,14 @@ ui <- fluidPage(
           DTOutput("summary")
         ),
         
+        # create a sidebbar with one input
+        sidebarPanel(
+          selectInput(inputId="yaxis", # references the input from server
+                      label = "Select a Variable", # Label that appears on UI
+                      choices=c("Avg Trip Duration", "Avg Age", "Total Rides", "Total Subscribers", "Total Non-Subscribers")# list of input options
+                      )
+        ),
+        
         fluidRow (
           plotOutput("bar_plot")
         )
@@ -33,27 +41,36 @@ server <- function(input, output) {
   summary<- df %>%
     group_by(start_station_name) %>%
     summarise(
-      num_rides = n(),
+      total_rides = n(),
       avg_duration=as.integer(mean(tripduration)),
       avg_age = as.integer(mean(age)), 
       subscribers = sum(usertype == "Subscriber"),
-      non_customers = sum(usertype == "Customer"),
+      non_subscribers = sum(usertype == "Customer"),
     ) %>% 
-    arrange(-num_rides)
+    arrange(-total_rides)
   
 
   # render data table
   output$summary <- renderDT(summary, options=list( info = FALSE, paging = TRUE, searching = TRUE))
   
+  # create reactive axes and labels
+  bar_y <- reactive({
+    if ("Avg Trip Duration" %in% input$yaxis) return(summary$avg_duration)
+    if ("Avg Age" %in% input$yaxis) return(summary$avg_age)
+    if ("Total Rides" %in% input$yaxis) return(summary$total_rides)
+    if ("Total Subscribers" %in% input$yaxis) return(summary$subscribers)
+    if ("Total Non-Subscribers" %in% input$yaxis) return(summary$non_subscribers)
+  })
+  
   # render a barplot for summary table
   output$bar_plot <- renderPlot({
     
-    # plot histogram
-    ggplot(head(summary, 10), aes(y=avg_duration, x=start_station_name , fill = ifelse(avg_duration > 3000, "Over an hour", "Less than an hour"))) + 
-      geom_bar(stat="identity", show.legend = F) + scale_fill_manual(values = c('#828282', '#5eff8a')) +
-      ggtitle("Average Trip Duration by Start Station", ) + theme(plot.title = element_text(hjust = 0.5)) + 
-      ylab("Trip Duration (Seconds)") +
-      xlab("Start Station")
+  # plot histogram
+  ggplot(summary, aes(y=bar_y(), x=start_station_name , fill = ifelse(avg_duration > 3000, "Over an hour", "Less than an hour"))) + 
+    geom_bar(stat="identity", show.legend = F) + scale_fill_manual(values = c('#828282', '#5eff8a')) +
+    ggtitle("Average Trip Duration by Start Station", ) + theme(plot.title = element_text(hjust = 0.5)) + 
+    ylab("Trip Duration (Seconds)") +
+    xlab("Start Station")
   })
   
   
