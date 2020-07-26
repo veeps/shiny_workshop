@@ -47,12 +47,16 @@ server <- function(input, output) {
   df <- read_csv("data/citibike-tripdata.csv")
 
   # create reactive axes and labels
-  bar_y <- reactive({
-    if ("Avg Trip Duration" %in% input$yaxis) return(summary$avg_duration)
-    if ("Avg Age" %in% input$yaxis) return(summary$avg_age)
-    if ("Total Rides" %in% input$yaxis) return(summary$total_rides)
-    if ("Total Subscribers" %in% input$yaxis) return(summary$subscribers)
-    if ("Total Non-Subscribers" %in% input$yaxis) return(summary$non_subscribers)
+  plot_x <- reactive({
+    if ("Subscriber Type" %in% input$xaxis) return(df$usertype)
+    if ("Age" %in% input$xaxis) return(df$age)
+    if ("Gender" %in% input$yaxis) return(summary$total_rides)
+  })
+  
+  # create reactive axes and labels
+  plot_y <- reactive({
+    if ("Trip Duration" %in% input$yaxis) return(df$tripduration)
+    if ("Age" %in% input$yaxis) return(df$age)
   })
 
   
@@ -65,7 +69,7 @@ server <- function(input, output) {
   
   # plot  distribution
   output$distribution <- renderPlot({
-    ggplot(df, aes(y = age, x = usertype, fill = usertype)) + geom_violin()
+    ggplot(df, aes(y = plot_y(), x = plot_x(), fill = plot_x())) + geom_violin()
   })
 
 
