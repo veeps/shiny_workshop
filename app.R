@@ -18,20 +18,20 @@ ui <- fluidPage(
         ),
         
         # create a sidebbar with one input
-        sidebarPanel(
+        fluidRow(
+          column(3,
           selectInput(inputId="yaxis", # references the input from server
                       label = "Select a Variable", # Label that appears on UI
                       choices=c("Avg Trip Duration", "Avg Age", "Total Rides", "Total Subscribers", "Total Non-Subscribers")# list of input options
                       )
         ),
-        
-        mainPanel(
+          column(9,
           plotOutput("bar_plot")
-        )
+        )),
         
-       # fluidRow (
-         # plotly::plotlyOutput("scatter")
-        #)
+       fluidRow(
+         plotly::plotlyOutput("scatter")
+        )
 )
 
 
@@ -71,7 +71,7 @@ server <- function(input, output) {
   output$bar_plot <- renderPlot({
     
   # plot histogram
-  ggplot(summary, aes(y=bar_y(), x=start_station_name , fill = ifelse(bar_y()> mean(bar_y()), T, F))) + 
+  ggplot(summary, aes(y=bar_y(), x=start_station_name , fill = ifelse(bar_y() > mean(bar_y()), T, F))) + 
     geom_bar(stat="identity", show.legend = F) + scale_fill_manual(values = c('#828282', '#5eff8a')) +
     ggtitle("Average Trip Duration by Start Station", ) + theme(plot.title = element_text(hjust = 0.5)) + 
     ylab("Trip Duration (Seconds)") +
@@ -81,6 +81,7 @@ server <- function(input, output) {
   # render scatter plot
   output$scatter <- renderPlotly({
     plot_ly(data = df, x = ~age, y = ~tripduration,
+            maker=list(size=5),
             text = ~paste("Age:", age, "Trip Duration:", tripduration/60, "min"))
   })
   
