@@ -1,5 +1,4 @@
 library(tidyverse)
-library(janitor)
 library(RColorBrewer)
 library(circlize)
 library(patchwork)
@@ -8,14 +7,6 @@ library(networkD3)
 
 df <- read_csv("data/citibike-tripdata.csv")
 
-# clean up column names
-#df <- clean_names(df)
-
-# create an age column
-#df$age <- 2020 - df$birth_year
-
-# write to csv
-#write_csv(df, "data/citibike-tripdata.csv", append = FALSE)
 
 head(df)
 
