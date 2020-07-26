@@ -19,11 +19,11 @@ ui <- fluidPage(
         # create radio buttons
         div(radioButtons(inputId="xaxis", # references the input from server
                     label = "X Variable", # Label that appears on UI
-                    choices=c("Age", "Subscriber Type", "Gender")# list of input options
+                    choices=c("Subscriber Type", "Gender")# list of input options
                     ),
             radioButtons(inputId="yaxis", # references the input from server
                          label = "Y Variable", # Label that appears on UI
-                         choices=c("Trip Duration", "Age")# list of input options
+                         choices=c("Age", "Trip Duration")# list of input options
             ))
             
         ),
@@ -49,8 +49,7 @@ server <- function(input, output) {
   # create reactive axes and labels
   plot_x <- reactive({
     if ("Subscriber Type" %in% input$xaxis) return(df$usertype)
-    if ("Age" %in% input$xaxis) return(df$age)
-    if ("Gender" %in% input$yaxis) return(summary$total_rides)
+    if ("Gender" %in% input$xaxis) return(df$gender)
   })
   
   # create reactive axes and labels
