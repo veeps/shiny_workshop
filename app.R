@@ -25,13 +25,13 @@ ui <- fluidPage(
                       )
         ),
         
-        fluidRow (
+        mainPanel(
           plotOutput("bar_plot")
-        ),
-        
-        fluidRow (
-          plotly::plotlyOutput("scatter")
         )
+        
+       # fluidRow (
+         # plotly::plotlyOutput("scatter")
+        #)
 )
 
 
@@ -51,7 +51,8 @@ server <- function(input, output) {
       subscribers = sum(usertype == "Subscriber"),
       non_subscribers = sum(usertype == "Customer"),
     ) %>% 
-    arrange(-total_rides)
+    arrange(-total_rides) %>%
+    head(10)
   
 
   # render data table
@@ -70,7 +71,7 @@ server <- function(input, output) {
   output$bar_plot <- renderPlot({
     
   # plot histogram
-  ggplot(summary, aes(y=bar_y(), x=start_station_name , fill = ifelse(avg_duration > 3000, "Over an hour", "Less than an hour"))) + 
+  ggplot(summary, aes(y=bar_y(), x=start_station_name , fill = ifelse(bar_y()> mean(bar_y()), T, F))) + 
     geom_bar(stat="identity", show.legend = F) + scale_fill_manual(values = c('#828282', '#5eff8a')) +
     ggtitle("Average Trip Duration by Start Station", ) + theme(plot.title = element_text(hjust = 0.5)) + 
     ylab("Trip Duration (Seconds)") +
