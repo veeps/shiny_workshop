@@ -33,11 +33,10 @@ ui <- fluidPage(
         # new row for scatter plot
         fluidRow(style="padding-left:40px",
           column(3,
-                 # create radio buttons
-                 div(radioButtons(inputId="xaxis", # references the input from server
-                                  label = "X Variable", # Label that appears on UI
-                                  choices=c("Age", "Gender")# list of input options
-                 ))),
+                 # Space for text
+                 div(
+                   h3("Looking at correlation"),
+                   p("This is an example of using plotly and show how tooltips work."))),
           # plot chart
           column(9,plotly::plotlyOutput("scatter"))
           )
@@ -83,15 +82,10 @@ server <- function(input, output) {
     scale_x_discrete(labels=function(x){gsub(" ", "\n", summary$start_station_name)})
   })
   
-  # create reactive input for scatter plot x axis
-  scatter_x <- reactive({
-    if ("Age" %in% input$xaxis) return(df$age)
-    if ("Gender" %in% input$bar_yaxis) return(dg$age)
-  })
-  
+
   # render scatter plot
   output$scatter <- renderPlotly({
-  plot_ly(data = df, x = ~scatter_x(), y = ~tripduration,
+  plot_ly(data = df, x = ~age, y = ~distance,
       maker=list(size=5),
       text = ~paste("Age:", age, "Trip Duration:", tripduration/60, "min"))
   })

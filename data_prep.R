@@ -1,5 +1,6 @@
 library(tidyverse)
 library(janitor)
+library(geosphere)
 
 ###### This file is used to prep data for workshop
 
@@ -16,9 +17,15 @@ df$gender <- recode_factor(df$gender, `0` = "Unknown", `1` = "Male", `2` = "Fema
 df$age <- 2020 - df$birth_year
 
 
-# create an age column
-df$start_station_name <- gsub(" ", "\n", df$start_station_name)
 
+# filter outliers of tripduration
+df <- df %>%
+  filter(tripduration <= (mean(df$tripduration) + sd(df$tripduration)))
+
+# calculate distance
+df <- mutate(df,
+       distance = distHaversine(cbind(start_station_longitude, start_station_latitude),
+                                cbind(end_station_longitude, end_station_latitude)))
 
 # write to csv
 write_csv(df, "data/citibike-tripdata.csv", append = FALSE)
