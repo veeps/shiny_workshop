@@ -39,7 +39,17 @@ ui <- fluidPage(
                    p("This is an example of using plotly and show how tooltips work."))),
           # plot chart
           column(9,plotly::plotlyOutput("scatter"))
-          )
+          ),
+        
+        # new header row
+        fluidRow(style="padding-left:40px",
+                 h3("Summary Table")),
+        
+        # new row for data table
+        fluidRow(style="padding-left:40px",
+                 DTOutput("summary"))
+        
+        
 )
 
 
@@ -62,7 +72,7 @@ server <- function(input, output) {
   
 
   # render data table
-  output$summary <- renderDT(summary, options=list( info = FALSE, paging = TRUE, searching = TRUE))
+  output$summary <- renderDT(summary, options=list( info = FALSE, paging = F, searching = F))
   
   # create reactive input for bar plot
   bar_y <- reactive({
@@ -87,7 +97,7 @@ server <- function(input, output) {
   output$scatter <- renderPlotly({
   plot_ly(data = df, x = ~age, y = ~distance,
       maker=list(size=5),
-      text = ~paste("Age:", age, "Trip Duration:", tripduration/60, "min"))
+      text = ~paste("Age:", age, "Distance:", round(distance,2), "m"))
   })
   
 
