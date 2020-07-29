@@ -31,10 +31,14 @@ output$bar_plot <- renderPlot({
     scale_x_discrete(labels=function(x){gsub(" ", "\n", summary$start_station_name)})
 })
 
+# create custom gradient palette 
+#gradient <-colorRampPalette(c("#30cbcf", "#7cd8c9", "#b4e3c5"))
 
 # render scatter plot
 output$scatter <- renderPlotly({
   plot_ly(data = df, x = ~age, y = ~distance,
-          maker=list(size=5),
+          type="scatter",
+          marker=list(size=5),
+          mode = "markers", 
           text = ~paste("Age:", age, "Distance:", round(distance,2), "m"))
 })
