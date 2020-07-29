@@ -15,5 +15,10 @@ df$gender <- recode_factor(df$gender, `0` = "Unknown", `1` = "Male", `2` = "Fema
 # create an age column
 df$age <- 2020 - df$birth_year
 
+
+# create an age column
+df$start_station_name <- gsub(" ", "\n", df$start_station_name)
+
+
 # write to csv
 write_csv(df, "data/citibike-tripdata.csv", append = FALSE)
