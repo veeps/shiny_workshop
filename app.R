@@ -43,12 +43,18 @@ ui <- fluidPage(
         
         # new header row
         fluidRow(style="padding-left:40px",
-                 h3("Summary Table")),
-        
-        # new row for data table
-        fluidRow(style="padding-left:40px",
-                 DTOutput("summary"))
-        
+          column(3,
+                 div(style = "background-color: #7cd8c9",
+                   h1(textOutput("total")),
+                   h3("Total Rides")
+                 ),
+                 div(style = "background-color: #7cd8c9",
+                     h1(textOutput("avg_age")),
+                     h3("Average Age")
+                 )
+                 ),
+          column(9, DTOutput("summary"))
+        )
         
 )
 

@@ -9,6 +9,11 @@ summary<- df %>%
   arrange(-total_rides) %>%
   head(10)
 
+# create a total value
+output$total <- renderText({scales::comma(nrow(df))})
+
+# create an average age value
+output$avg_age <- renderText({round(mean(df$age))})
 
 # render data table
 output$summary <- renderDT(summary, options=list( info = FALSE, paging = F, searching = F))
@@ -24,7 +29,7 @@ bar_y <- reactive({
 # render a barplot for summary table
 output$bar_plot <- renderPlot({
   ggplot(summary, aes(y=bar_y(), x=start_station_name , fill = ifelse(bar_y() > mean(bar_y()), T, F))) + 
-    geom_bar(stat="identity", show.legend = F) + scale_fill_manual(values = c('#828282', '#5eff8a')) +
+    geom_bar(stat="identity", show.legend = F) + scale_fill_manual(values = c('#828282', '#2785bc')) +
     ggtitle("Average Trip Duration by Start Station", ) + theme(plot.title = element_text(hjust = 0.5)) + 
     ylab("Total Rides") +
     xlab("Start Station") +

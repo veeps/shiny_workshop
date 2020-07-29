@@ -1,0 +1,13 @@
+name: shiny_workshop
+title: shiny_workshop
+username:
+account: veeps
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2624975
+bundleId: 3451842
+url: https://veeps.shinyapps.io/shiny_workshop/
+when: 1596052047.21228
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .gitattributes|data_prep.R|eda.R|snapshot.R|data/.DS_Store|data/JC-202006-citibike-tripdata.csv
