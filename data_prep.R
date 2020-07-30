@@ -5,7 +5,8 @@ library(geosphere)
 ###### This file is used to prep data for workshop
 
 # read in data
-df <- read_csv("data/JC-202006-citibike-tripdata.csv")
+df <- read_csv("data/JC-202006-citibike-tripdata.csv") %>%
+  sample_n(10000) # get a smaller sample so shiny will run faster
 
 # clean up column names
 df <- clean_names(df)
