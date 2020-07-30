@@ -1,11 +1,4 @@
-library(shiny)
-library(tidyverse)
-#library(scales)
-library(DT)
-library(plotly)
-library(RColorBrewer)
 
-head(df)
 
 
 # Define UI ----
@@ -58,37 +51,3 @@ ui <- fluidPage(
         
 )
 
-
-# Define server logic ----
-server <- function(input, output) {
-  
-  observeEvent(input$all,{
-    df <- readr::read_csv("data/citibike-tripdata.csv")
-    source("./plots.R", local = TRUE)
-  })
-  
-  observeEvent(input$sub,{
-    df <- readr::read_csv("data/citibike-tripdata.csv") %>%
-           filter(usertype == "Subscriber")
-    source("./plots.R", local = TRUE)
-  })
-  
-  observeEvent(input$non_sub,{
-    df <- readr::read_csv("data/citibike-tripdata.csv") %>%
-           filter(usertype == "Customer")
-    source("./plots.R", local = TRUE)
-  })
-  
-  # read in data file
-  df <- read_csv("data/citibike-tripdata.csv")
-  source("./plots.R", local = TRUE)
-
-
-
-
-  
-  
-}
-
-# Run the app ----
-shinyApp(ui = ui, server = server)
