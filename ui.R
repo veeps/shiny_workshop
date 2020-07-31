@@ -14,11 +14,13 @@ ui <- fluidPage(
         fluidRow(style="padding:20px; text-align:center",
                  column(6,
                         div(style="background-color: #dedede",
+                            icon("bicycle"),
                             h1(textOutput("total")),
                             h3("Total Rides")
                         )),
                  column(6,
                         div(style="background-color: #dedede",
+                            icon("birthday-cake"),
                             h1(textOutput("avg_age")),
                             h3("Median Age")
                         ))
