@@ -5,9 +5,9 @@ account: veeps
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2624975
-bundleId: 3456799
+bundleId: 3457001
 url: https://veeps.shinyapps.io/shiny_workshop/
-when: 1596151604.84422
+when: 1596155557.09162
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: .gitattributes|data_prep.R|eda.R|snapshot.R|data/.DS_Store|data/JC-202006-citibike-tripdata.csv
