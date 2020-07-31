@@ -13,7 +13,7 @@ summary<- df %>%
 output$total <- renderText({scales::comma(nrow(df))})
 
 # create an average age value
-output$avg_age <- renderText({round(mean(df$age))})
+output$avg_age <- renderText({round(median(df$age))})
 
 # render data table
 output$summary <- renderDT(summary, options=list( info = FALSE, paging = F, searching = F))

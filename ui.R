@@ -10,6 +10,20 @@ ui <- fluidPage(
                  column(2,div(style="padding: 20px", actionButton("sub", "Subscribers"))),
                  column(2,div(style="padding: 20px", actionButton("non_sub", "Non-Subscribers")))
         ),
+        
+        fluidRow(style="padding:20px; text-align:center",
+                 column(6,
+                        div(style="background-color: #dedede",
+                            h1(textOutput("total")),
+                            h3("Total Rides")
+                        )),
+                 column(6,
+                        div(style="background-color: #dedede",
+                            h1(textOutput("avg_age")),
+                            h3("Median Age")
+                        ))
+                 ),
+        
 
         
         # new row for summary bar chart
@@ -36,17 +50,7 @@ ui <- fluidPage(
         
         # new header row
         fluidRow(style="padding-left:40px",
-          column(3,
-                 div(style = "background-color: #7cd8c9",
-                   h1(textOutput("total")),
-                   h3("Total Rides")
-                 ),
-                 div(style = "background-color: #7cd8c9",
-                     h1(textOutput("avg_age")),
-                     h3("Average Age")
-                 )
-                 ),
-          column(9, DTOutput("summary"))
+          DTOutput("summary")
         )
         
 )
