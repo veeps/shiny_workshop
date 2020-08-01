@@ -7,7 +7,7 @@ library(RColorBrewer)
 
 
 # read in data various options
-df <- readr::read_csv("data/citibike-tripdata.csv") 
+df <- readr::read_csv("../data/citibike-tripdata.csv") 
 
 sub_df <- df %>%
           filter(usertype == "Subscriber") 
