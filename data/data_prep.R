@@ -5,7 +5,7 @@ library(geosphere)
 ###### This file is used to prep data for workshop
 
 # read in data
-df <- read_csv("data/JC-202006-citibike-tripdata.csv") %>%
+df <- read_csv("./JC-202006-citibike-tripdata.csv") %>%
   sample_n(10000) # get a smaller sample so shiny will run faster
 
 # clean up column names
@@ -29,4 +29,4 @@ df <- mutate(df,
                                 cbind(end_station_longitude, end_station_latitude)))
 
 # write to csv
-write_csv(df, "data/citibike-tripdata.csv", append = FALSE)
+write_csv(df, "./citibike-tripdata.csv", append = FALSE)
