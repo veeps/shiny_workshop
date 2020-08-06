@@ -6,7 +6,7 @@ summary<- df %>%
     avg_duration=as.integer(mean(tripduration)),
     avg_age = as.integer(mean(age)), 
   ) %>% 
-  arrange(-total_rides) %>%
+  arrange(desc(total_rides))%>%
   head(10)
 
 # create a total value
