@@ -6,17 +6,20 @@ library(plotly)
 ui <- fluidPage(
   
     # create side panel with dropdown menu
-    selectInput(inputId="bar_yaxis", #references the input to server
+    fluidRow(
+      column(3,selectInput(inputId="bar_yaxis", #references the input to server
                            label = h3("Select Variable"), # text that appears on UI
-                           choices=c("Avg Duration" = "avg_duration", "Avg Age"="avg_age", "Total Rides"= "total_rides")),
+                           choices=c("Avg Duration" = "avg_duration", "Avg Age"="avg_age", "Total Rides"= "total_rides"))
+      ),
     # plot bar chart
-    plotOutput("bar_plot"),
+    column(9,plotOutput("bar_plot"))),
     
-    # add DataTable
-    DTOutput("summary_dt"), 
-    
-    # add scatterplot
-    plotly::plotlyOutput("scatter")
+    # last exercise - rendering scatter plot and datatable output in one row
+    fluidRow(
+      column(6, plotly::plotlyOutput("scatter")),
+      column(6,DTOutput("summary_dt") )
+    )
+
 
 )
 
