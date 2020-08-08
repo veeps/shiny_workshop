@@ -6,7 +6,14 @@ library(RColorBrewer)
 
 ui <- fluidPage(
   
+  # create side panel with dropdown menu
+  # selectInput(inputId="bar_yaxis", #references the input to server
+  #             label = h3("Select Variable"), # text that appears on UI
+  #             choices=c("Avg Duration" = "avg_duration", "Avg Age"="avg_age", "Total Rides"= "total_rides")),
+
   fluidRow()
+  
+
 )
 
 server <- function(input, output, session) {
@@ -27,19 +34,19 @@ server <- function(input, output, session) {
   
   
   # render data table output
-  output$summary_dt <- renderDT()
+  #output$summary_dt <- renderDT()
   
   
   # render barchart
   #output$bar_plot <- renderPlot({})
   
-  # create reactive input for bar plot
-  #bar_y <- reactive({})
   
   # exercise - create reactive input for chart title
   
   # create scatterplot
   # output$scatter <- renderPlotly({})
+  
+  
   
 }
 
