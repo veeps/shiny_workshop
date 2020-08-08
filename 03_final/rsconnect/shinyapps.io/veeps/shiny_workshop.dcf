@@ -5,9 +5,9 @@ account: veeps
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2645531
-bundleId: 3480820
+bundleId: 3490758
 url: https://veeps.shinyapps.io/shiny_workshop/
-when: 1596686829.39639
+when: 1596901489.4087
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: .Rapp.history

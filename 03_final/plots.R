@@ -1,5 +1,5 @@
 # create summary table 
-summary<- df %>%
+summary<- df  %>%
   group_by(start_station_name) %>%
   summarise(
     total_rides = n(),
@@ -19,19 +19,18 @@ output$avg_age <- renderText({round(median(df$age))})
 output$summary <- renderDT(summary, options=list( info = FALSE, paging = F, searching = F))
 
 # create reactive input for bar plot
-bar_y <- reactive({
-  if ("Avg Duration" %in% input$bar_yaxis) return(summary$avg_duration)
-  if ("Avg Age" %in% input$bar_yaxis) return(summary$avg_age)
-  if ("Total Rides" %in% input$bar_yaxis) return (summary$total_rides)
-})
+# bar_y <- reactive({
+#   if ("Avg Duration" %in% input$bar_yaxis) return(summary$avg_duration)
+#   if ("Avg Age" %in% input$bar_yaxis) return(summary$avg_age)
+#   if ("Total Rides" %in% input$bar_yaxis) return (summary$total_rides)
+# })
 
 
 # render a barplot for summary table
 output$bar_plot <- renderPlot({
-  ggplot(summary, aes(y=bar_y(), x=start_station_name , fill = ifelse(bar_y() > mean(bar_y()), T, F))) + 
+  ggplot(summary, aes(y=.data[[input$bar_yaxis]], x=start_station_name , fill = ifelse(.data[[input$bar_yaxis]] > mean(.data[[input$bar_yaxis]]), T, F))) + 
     geom_bar(stat="identity", show.legend = F) + scale_fill_manual(values = c('#828282', '#2785bc')) +
-    ggtitle("Average Trip Duration by Start Station", ) + theme(plot.title = element_text(hjust = 0.5)) + 
-    ylab("Total Rides") +
+    ylab(input$bar_yaxis) +
     xlab("Start Station") +
     scale_x_discrete(labels=function(x){gsub(" ", "\n", summary$start_station_name)})
 })
