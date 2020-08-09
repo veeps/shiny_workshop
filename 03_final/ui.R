@@ -11,7 +11,7 @@ ui <- fluidPage(
                  column(2,div(style="padding: 20px", actionButton("non_sub", "Non-Subscribers")))
         ),
         
-        fluidRow(style="padding:20px; text-align:center",
+        fluidRow(style="padding-top:20px; text-align:center",
                  column(6,
                         div(style="background-color: #dedede",
                             icon("bicycle"),
