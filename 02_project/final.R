@@ -50,7 +50,7 @@ server <- function(input, output, session) {
   
   # render barchart
   output$bar_plot <- renderPlot({
-    ggplot(summary,aes(y=.data[[input$bar_yaxis]], x=start_station_name , fill = .data[[input$bar_yaxis]])) + geom_bar(stat="identity") +
+    ggplot(summary,aes(y=.data[[input$bar_yaxis]], x=start_station_name , fill = start_station_name)) + geom_bar(stat="identity", show.legend=F) +
       ylab(input$bar_yaxis)
   })
   
