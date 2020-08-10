@@ -8,12 +8,11 @@ library(reactlog)
 ui <- fluidPage(
   
   # create side panel with dropdown menu
-   selectInput(inputId="bar_yaxis", #references the input to server
-               label = h3("Select Variable"), # text that appears on UI
-               choices=c("Avg Duration" = "avg_duration", "Avg Age"="avg_age", "Total Rides"= "total_rides")),
+   # selectInput(inputId="bar_yaxis", #references the input to server
+   #             label = h3("Select Variable"), # text that appears on UI
+   #             choices=c("Avg Duration" = "avg_duration", "Avg Age"="avg_age", "Total Rides"= "total_rides")),
 
-  fluidRow()
-  
+
 
 )
 
