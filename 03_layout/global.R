@@ -1,5 +1,5 @@
 library(shiny)
-
+library(tidyverse)
 
 # read in data
 df <- readr::read_csv("../data/citibike-tripdata.csv")
