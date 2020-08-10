@@ -50,8 +50,9 @@ server <- function(input, output, session) {
   
   # render barchart
   output$bar_plot <- renderPlot({
-    ggplot(summary,aes(y=.data[[input$bar_yaxis]], x=start_station_name , fill = start_station_name)) + geom_bar(stat="identity", show.legend=F) +
-      ylab(input$bar_yaxis)
+    ggplot(summary,aes(y=.data[[input$bar_yaxis]], x=start_station_name , fill = ifelse(.data[[input$bar_yaxis]]> mean(.data[[input$bar_yaxis]]), T, F))) + 
+      geom_bar(stat="identity", show.legend=F) +
+      ylab(input$bar_yaxis) + scale_fill_manual(values = c('#828282', '#2785bc')) 
   })
   
   # create plotly scatter
