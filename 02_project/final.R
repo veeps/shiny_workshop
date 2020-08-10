@@ -16,7 +16,8 @@ ui <- fluidPage(
     
     # exercise - add text to the side of scatter plot
     fluidRow(
-      column(3,h3("Looking at correlation")),
+      column(3,div(h3("Looking at correlation"), p("Here is where we can put some text!"))
+             ),
       column(9, plotly::plotlyOutput("scatter"))
     ),
     
