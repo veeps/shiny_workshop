@@ -5,6 +5,9 @@ library(plotly)
 
 ui <- fluidPage(
   
+    
+    
+  
     # create side panel with dropdown menu
     fluidRow(
       column(3,selectInput(inputId="bar_yaxis", #references the input to server

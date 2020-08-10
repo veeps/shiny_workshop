@@ -5,7 +5,7 @@
 ui <- fluidPage(
         #titlePanel("CitiBike Ridership Data in June 2020"),
         fluidRow(style="background-color: #7cd8c9",
-                 column(5,h2(style="padding-left: 40px", "CitiBike June 2020")),
+                 column(6,h2(style="padding-left: 40px", "CitiBike June 2020")),
                  column(2,div(style="padding: 20px", actionButton("all", "All Users"))),
                  column(2,div(style="padding: 20px", actionButton("sub", "Subscribers"))),
                  column(2,div(style="padding: 20px", actionButton("non_sub", "Non-Subscribers")))
