@@ -12,7 +12,6 @@ ui <- fluidPage(
                                choices=c("Avg Duration" = "avg_duration", "Avg Age"="avg_age", "Total Rides"= "total_rides")),
                                actionButton("action", label = "Action"))
       ),
-      
     
     # plot bar chart
     column(9,plotOutput("bar_plot"))),
@@ -52,7 +51,8 @@ server <- function(input, output, session) {
   output$bar_plot <- renderPlot({
     ggplot(summary,aes(y=.data[[input$bar_yaxis]], x=start_station_name , fill = ifelse(.data[[input$bar_yaxis]]> mean(.data[[input$bar_yaxis]]), T, F))) + 
       geom_bar(stat="identity", show.legend=F) +
-      ylab(input$bar_yaxis) + scale_fill_manual(values = c('#828282', '#2785bc')) 
+      ylab(input$bar_yaxis) + scale_fill_manual(values = c('#828282', '#2785bc')) +
+      scale_x_discrete(labels=function(x){gsub(" ", "\n", summary$start_station_name)})
   })
   
   # create plotly scatter
