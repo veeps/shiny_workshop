@@ -2,7 +2,6 @@ library(shiny)
 library(tidyverse)
 library(DT)
 library(plotly)
-library(RColorBrewer)
 library(reactlog)
 
 ui <- fluidPage(
