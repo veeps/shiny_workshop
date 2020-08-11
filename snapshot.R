@@ -47,10 +47,10 @@ summary %>%
   #scale_fill_brewer(palette="Blues")
 
 # plot age distribution
-ggplot(df, aes(x = age, fill = usertype, alpha = 0.5)) + geom_density()
+ggplot(df, aes(x = age, fill = usertype, alpha = 0.5)) + geom_density(show.legend = FALSE) + ggtitle("Distribution")
 
-# plot time distribution
-ggplot(df, aes(y = age, x = usertype, fill = usertype)) + geom_violin()
+# plot age distribution vioilin plot
+ggplot(df, aes(y = age, x = usertype, fill = usertype)) + geom_violin(show.legend=FALSE) + ggtitle("Violin Plot")
 
 # remove outliers for time
 df2 <- df %>%
