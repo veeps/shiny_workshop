@@ -12,7 +12,8 @@ ui <- dashboardPage(
   dashboardHeader(title="Yay Visuals!"),
   dashboardSidebar(sidebarMenu(
     menuItem("Sankey", tabName = "sankey"),
-    menuItem("Distribution", tabName = "distribution")
+    menuItem("Distribution", tabName = "distribution"),
+    menuItem("Scatter", tabName = "scatter")
   )),
   dashboardBody(
     tabItems(
@@ -23,7 +24,12 @@ ui <- dashboardPage(
       # Second tab content
       tabItem(tabName = "distribution", fluidRow(style="text-align: center",h1("Which kind of distribution do you like?")),
               fluidRow(box(plotOutput("dist")),
-              box( plotOutput("violin"))))
+              box( plotOutput("violin")))),
+      # Third tab content
+      tabItem(tabName = "scatter", fluidRow(style="text-align: center",h1("Select the Y variable!")),
+              fluidRow(column(3, 
+                              radioButtons("y_axis", label="Variable", choices=c("Distance"= "distance", "Trip Duration" = "tripduration"))),
+                       column(9, plotOutput("scatter"))))
     ))
 )
 
@@ -76,6 +82,12 @@ server <- function(input, output) {
   output$violin <- renderPlot({
     # plot age distribution vioilin plot
     ggplot(df, aes(y = age, x = usertype, fill = usertype)) + geom_violin(show.legend=FALSE) + ggtitle("Violin Plot")
+  })
+  
+  # scatter plot
+  output$scatter <- renderPlot({
+    # create a scatter plot the ggplot way
+    ggplot(df, aes(x= age, y = .data[[input$y_axis]], color = gender)) + geom_point()
   })
   
 }
