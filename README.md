@@ -25,6 +25,7 @@ There's a PDF copy of the the slides [here](slides.pdf), too.
 - [Shiny gallery](https://shiny.rstudio.com/gallery/)
 - [Shiny widgets](https://shiny.rstudio.com/gallery/widget-gallery.html)
 - [Shiny dashboard](https://rstudio.github.io/shinydashboard/get_started.html)
+- [Scoping rules for Shiny](https://shiny.rstudio.com/articles/scoping.html) (More info on global.R file)
 - [Plotly Library R](https://plotly.com/r/)
 - [Reactlog overview](https://rstudio.github.io/reactlog/articles/reactlog.html) (For debugging reactive functions)
 
