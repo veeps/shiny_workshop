@@ -23,10 +23,15 @@ ggplot(summary, aes(x= start_station_name, y = total_rides, fill = start_station
   geom_bar(stat="identity", show.legend=F) + 
   ggtitle("Total Rides by Station") + 
   theme(plot.title = element_text(hjust = 0.5)) +
-  scale_x_discrete(labels=function(x){gsub(" ", "\n", summary$start_station_name)})
+  scale_x_discrete(labels=function(x){gsub(" ", "\n", summary$start_station_name)}) +
+  ylab("dfdsjla;fsd")
 
 # create a scatter plot the ggplot way
-ggplot() + geom_point()
+ggplot(df, aes(x= age, y = distance)) + geom_point()
 
 # create scatter plot with plotly
-plot_ly()
+plot_ly(data = df,x=~age, y=~distance,
+        type = "scatter",
+        mode = "markers", 
+        text= ~paste("Age:", age, "Distance:", round(distance, 2))
+        )
