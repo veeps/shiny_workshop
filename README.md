@@ -24,6 +24,7 @@ There's a PDF copy of the the slides [here](slides.pdf), too.
 ## Helpful links
 - [Shiny gallery](https://shiny.rstudio.com/gallery/)
 - [Shiny widgets](https://shiny.rstudio.com/gallery/widget-gallery.html)
+- [Shiny dashboard](https://rstudio.github.io/shinydashboard/get_started.html)
 - [Plotly Library R](https://plotly.com/r/)
 - [Reactlog overview](https://rstudio.github.io/reactlog/articles/reactlog.html) (For debugging reactive functions)
 
@@ -32,3 +33,8 @@ There's a PDF copy of the the slides [here](slides.pdf), too.
 - [Mastering Shiny](https://mastering-shiny.org/) by Hadley Wickham
 - [Storytelling with Data](https://www.amazon.com/Storytelling-Data-Visualization-Business-Professionals/dp/1119002257) by Cole Nussbaumer Knaflic
 - [The Wall Street Journal Guide to Information Graphics](https://www.amazon.com/Street-Journal-Guide-Information-Graphics/dp/0393347281) by Dona M. Wong
+
+## Artists to follow
+- [Shirley Wu](https://twitter.com/sxywu)
+- [Allison Horst](https://twitter.com/allison_horst)
+- [Nadieh Bremer](https://twitter.com/NadiehBremer)
