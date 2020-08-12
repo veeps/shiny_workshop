@@ -13,11 +13,10 @@ ui <- fluidPage(
                  label = "Select your beverage",
                  choices=c("coffee", "sparkling water", "regular water", "juice", "beer", "wine"))
     
-    #textOutput(outputId = "math")
 )
 
 server <- function(input, output, session) {
-    #output$math <- renderText({5*3})
+    
 }
 
 shinyApp(ui, server)
