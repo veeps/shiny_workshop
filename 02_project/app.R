@@ -6,17 +6,25 @@ library(reactlog)
 
 ui <- fluidPage(
   
-  selectInput(
-    inputId="bar_yaxis",
-    label = ("Select Variable"), # what prints out on screen
-    choices=c("Avg Duration" = "avg_duration",
-              "Avg Age" = "avg_age",
-              "Total Rides" = "total_rides")
+  fluidRow(
+    column(3,selectInput(
+      inputId="bar_yaxis",
+      label = ("Select Variable"), # what prints out on screen
+      choices=c("Avg Duration" = "avg_duration",
+                "Avg Age" = "avg_age",
+                "Total Rides" = "total_rides")
+    )),
+    column(9, plotOutput(outputId = "bar_plot")  )
   ),
   
-  plotOutput(outputId = "bar_plot"),
+  fluidRow(
+    column(3,div(h1("This is Text"), p("This is some regular text"))
+           ),
+    column(9, plotly::plotlyOutput(outputId = "scatter"))
+  ),
+
   
-  plotly::plotlyOutput(outputId = "scatter"),
+
   
   DTOutput(outputId = "summary_dt")
 
@@ -26,7 +34,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   # read in data
-  df <- readr::read_csv("../data/citibike-tripdata.csv")
+  df <- readr::read_csv("./data/citibike-tripdata.csv")
 
   # create summary table
   summary <- df %>%
