@@ -6,7 +6,9 @@ library(reactlog)
 
 ui <- fluidPage(
   
-
+  plotOutput(outputId = "bar_plot"),
+  
+  DTOutput(outputId = "summary_dt")
 
 
 )
@@ -29,11 +31,17 @@ server <- function(input, output, session) {
   
   
   # render data table output
-  #output$summary_dt <- renderDT()
+  output$summary_dt <- renderDT({summary})
   
   
   # render barchart
-  #output$bar_plot <- renderPlot({})
+  output$bar_plot <- renderPlot({
+    ggplot(summary, aes(x= start_station_name, y = total_rides, fill = start_station_name)) + 
+      geom_bar(stat="identity", show.legend=F) + 
+      ggtitle("Total Rides by Station") + 
+      theme(plot.title = element_text(hjust = 0.5)) 
+      #scale_x_discrete(labels=function(x){gsub(" ", "\n", summary$start_station_name)})
+  })
   
   
   # exercise - create reactive input for chart title
