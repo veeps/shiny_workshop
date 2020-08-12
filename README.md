@@ -14,6 +14,8 @@ We will be walking through examples throughout the course. If you get lost follo
 
 We are going to work our way towards building [this](https://veeps.shinyapps.io/shiny_workshop/).
 
+At the end of each break, I will push the updates for what we've done so far so you can follow along. 
+
 ## Slides
 For the best experience, I would view the slides online [here](https://docs.google.com/presentation/d/15S1CL5cinseDYhjExdkvCjkKtC6y2smm70vksr05c1g/edit?usp=sharing).
 Trust me, you don't want to miss out on cute animations like this: ![Reactive](https://static1.squarespace.com/static/56b18976f8baf3f55716718f/57f5b864414fb53f7ae1d7bd/5f3383550dc6857846f62829/1597211539736/?format=1500w)
@@ -24,7 +26,7 @@ There's a PDF copy of the the slides [here](slides.pdf), too.
 - [Shiny widgets](https://shiny.rstudio.com/gallery/widget-gallery.html)
 - [Plotly Library R](https://plotly.com/r/)
 - [Reactlog overview](https://rstudio.github.io/reactlog/articles/reactlog.html) (For debugging reactive functions)
-- 
+
 
 ## Book recommendations
 - [Mastering Shiny](https://mastering-shiny.org/) by Hadley Wickham
