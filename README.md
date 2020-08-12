@@ -21,6 +21,9 @@ For the best experience, I would view the slides online [here](https://docs.goog
 Trust me, you don't want to miss out on cute animations like this: ![Reactive](https://static1.squarespace.com/static/56b18976f8baf3f55716718f/57f5b864414fb53f7ae1d7bd/5f3383550dc6857846f62829/1597211539736/?format=1500w)
 There's a PDF copy of the the slides [here](slides.pdf), too.
 
+## Data files stored in git lfs!
+All the .csv files here are stored on github via git lfs. Follow these instructions to install git lfs and open the files: https://git-lfs.github.com
+
 ## Helpful links
 - [Shiny gallery](https://shiny.rstudio.com/gallery/)
 - [Shiny widgets](https://shiny.rstudio.com/gallery/widget-gallery.html)
