@@ -36,7 +36,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   # read in data various options
-  df <- readr::read_csv("../data/citibike-tripdata.csv") 
+  df <- read_csv("./data/citibike-tripdata.csv") 
   
   # create summary table 
   summary<- df |>
