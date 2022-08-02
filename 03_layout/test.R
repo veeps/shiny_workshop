@@ -26,13 +26,13 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   # read in data
-  df <- readr::read_csv("../data/citibike-tripdata.csv")
+  df <- readr::read_csv("./data/citibike-tripdata.csv")
   
   # subset data for subscribers
-  #sub_df <- df %>% filter(usertype == "Subscriber")
+  #sub_df <- df |> filter(usertype == "Subscriber")
   
   # subset data for non-subscribers
-  #non_sub_df <- df %>% filter(usertype == "Customer")
+  #non_sub_df <- df |> filter(usertype == "Customer")
   
   
   # create reactive values
@@ -45,12 +45,12 @@ server <- function(input, output, session) {
   
   observeEvent(input$sub, {
     # get the second dataframe in the list
-    v$data <- df %>% filter(usertype == "Subscriber")
+    v$data <- df |> filter(usertype == "Subscriber")
   })
   
   observeEvent(input$non_sub, {
     # get the third dataframe in the list
-    v$data <- df %>% filter(usertype == "Customer")
+    v$data <- df |> filter(usertype == "Customer")
   })
   
   output$total <- renderText({if (is.null(v$data)) return(nrow(df))
