@@ -4,9 +4,10 @@ library(geosphere)
 
 ###### This file is used to prep data for workshop
 
+# need to install git lfs to pull file
 # read in data
-df <- read_csv("./data/JC-202006-citibike-tripdata.csv") %>%
-  sample_n(5000) # get a smaller sample so shiny will run faster
+df <- read_csv("./data/JC-202006-citibike-tripdata.csv") |>
+  sample_n(2500) # get a smaller sample so shiny will run faster
 
 # clean up column names
 df <- clean_names(df)
@@ -19,7 +20,7 @@ df$age <- 2020 - df$birth_year
 
 
 # filter outliers of tripduration
-df <- df %>%
+df <- df |>
   filter(tripduration <= (mean(df$tripduration) + sd(df$tripduration)))
 
 # calculate distance
