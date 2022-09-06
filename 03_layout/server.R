@@ -19,13 +19,13 @@ server <- function(input, output, session) {
   
   # Add observe events for the buttons subscribers 
   observeEvent( eventExpr = input$sub, { #do something here 
-    v$data <- df |>
+    v$data <- df %>%
       filter(usertype == "Subscriber")
   })
   
   # Add observe events for the buttons non-subscribers 
   observeEvent( eventExpr = input$non_sub, { #do something here 
-    v$data <- df |>
+    v$data <- df %>%
       filter(usertype == "Customer")
   })
   

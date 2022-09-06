@@ -1,5 +1,6 @@
 library(shiny)
-library(tidyverse)
+library(readr)
+library(dplyr)
 
 ui <- fluidPage(
   fluidRow(style="background-color: #7cd8c9",
@@ -26,7 +27,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   # read in data
-  df <- readr::read_csv("../data/citibike-tripdata.csv")
+  df <- readr::read_csv("./data/citibike-tripdata.csv")
   
   
   # create reactive values
@@ -39,13 +40,13 @@ server <- function(input, output, session) {
   
   observeEvent(input$sub, {
     # filter for subscriber
-    v$data <- df |> filter(usertype == "Subscriber")
+    v$data <- df %>% filter(usertype == "Subscriber")
     
   })
   
   observeEvent(input$non_sub, {
     # filter for customers
-    v$data <- df |> filter(usertype == "Customer")
+    v$data <- df %>% filter(usertype == "Customer")
   })
   
   output$total <- renderText({if (is.null(v$data)) return(nrow(df))
