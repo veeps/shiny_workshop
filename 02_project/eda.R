@@ -4,7 +4,7 @@ library(plotly)
 
 
 # read in data
-df <- readr::read_csv("./data/citibike-tripdata.csv")
+df <- readr::read_csv("https://media.githubusercontent.com/media/veeps/shiny_workshop/master/02_project/data/citibike-tripdata.csv")
 
 
 
