@@ -37,7 +37,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   # read in data various options
-  df <- read_csv("https://media.githubusercontent.com/media/veeps/shiny_workshop/master/02_project/data/citibike-tripdata.csv") 
+  df <- read_csv("https://docs.google.com/spreadsheets/d/1rOTd_fdh1kOXgya7XBP7TIR2ETkYfZx0hBz4bERLxss/export?format=csv") 
   
   # create summary table 
   summary<- df %>%

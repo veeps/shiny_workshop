@@ -2,7 +2,7 @@ library(shiny)
 library(readr)
 library(dplyr)
 
-df <- readr::read_csv("https://media.githubusercontent.com/media/veeps/shiny_workshop/master/02_project/data/citibike-tripdata.csv")
+df <- readr::read_csv("https://docs.google.com/spreadsheets/d/1rOTd_fdh1kOXgya7XBP7TIR2ETkYfZx0hBz4bERLxss/export?format=csv")
 
 
 # if I want to do more data cleaning, I can do it here only once.
