@@ -27,7 +27,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   # read in data
-  df <- readr::read_csv("./data/citibike-tripdata.csv")
+  df <- readr::read_csv("https://docs.google.com/spreadsheets/d/1rOTd_fdh1kOXgya7XBP7TIR2ETkYfZx0hBz4bERLxss/export?format=csv")
   
   
   # create reactive values
